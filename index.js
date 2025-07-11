@@ -34,9 +34,9 @@ app.use(express.static(path.join(__dirname,'public')))
 
 
 
-// app.get("/", (req, res) => {
-//   res.send("hello world");
-// });
+app.get("/", (req, res) => {
+  res.redirect('/home);
+});
 // app.get("/home", (req, res) => {
 //   const kk = new List({
 //     title: "sohnag",
@@ -74,7 +74,7 @@ passport.use(new passportLocal(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.get("/", async (req, res) => {
+app.get("/home", async (req, res) => {
   const listing = await List.find({});
   res.render("home.ejs", { listing });
 });
@@ -107,7 +107,7 @@ app.post('/croom', async(req,res)=>{
   }) 
   await hh.save()
   req.flash("success","room is create")
- res.redirect('/')
+ res.redirect('/home')
 })
 //edit
 app.get('/edit/:id', async(req,res)=>{
@@ -140,7 +140,7 @@ app.delete("/delete/:id", async(req,res)=>{
   }
   let {id} = req.params;
  await List.findByIdAndDelete(id);
- res.redirect('/')
+ res.redirect('/home')
 })
 // review 
 app.post("/review/:id", async (req, res) => {
@@ -210,7 +210,7 @@ app.post('/loginpost',
   }),
   function (req, res) {
     req.flash('success', 'Login successful now you can access everythings');
-    res.redirect('/');
+    res.redirect('/home');
   }
 );
 
@@ -221,7 +221,7 @@ app.post('/loginpost',
         return next(err);
       }
       req.flash("success","logout");
-      res.redirect('/')
+      res.redirect('/home')
     })
   })
 
