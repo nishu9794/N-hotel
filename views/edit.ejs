@@ -1,0 +1,36 @@
+<% layout('/layout/boilerplate.ejs') %>
+<body>
+<form action="/update/<%= listings._id %>?_method=PUT" method="POST" class="container mt-5" style="max-width: 600px;">
+  <h2 class="mb-4 text-center">Update Room</h2>
+
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" name="title" id="title" class="form-control" value="<%= listings.title %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <input type="text" name="description" id="description" class="form-control" value="<%= listings.description %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="img" class="form-label">Image URL</label>
+    <input type="text" name="img" id="img" class="form-control" value="<%= listings.img %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input type="number" name="price" id="price" class="form-control" value="<%= listings.price %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="location" class="form-label">Location</label>
+    <input type="text" name="location" id="location" class="form-control" value="<%= listings.location %>" required>
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Update</button>
+  </div>
+</form>
+
+</body>
